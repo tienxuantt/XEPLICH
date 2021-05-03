@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thiết lập phòng thi</title>
+    <link rel="shortcut icon" href="../Content/Images/vnuLogo.png">
+    <link rel="stylesheet" href="../Script/Library/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
+</head>
+
+<body>
+    <div class="container-wrapp">
+        <!-- Header page -->
+        <div class="header-page">
+            <div class="header-left flex">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <span class="title-header">HỆ THỐNG ĐĂNG KÝ THI - ĐHQG HÀ NỘI</span>
+            </div>
+            <div class="header-right flex">
+                <div class="fullName-user">Nguyễn Văn Tùng</div>
+                <div class="avatar-user">
+                    <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="logout">
+                    Đăng xuất
+                </div>
+            </div>
+        </div>
+        <div class="body-page flex">
+            <!-- Menu left -->
+            <div class="body-left">
+                <ul>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="fa fa-graduation-cap"></i>
+                            <span>Quản lý kì thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="SemesterManager">
+                        <a href="#" class="tabLeft">
+                            <span>Kì thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item" key="SubjectSemester">
+                        <a href="#" class="tabLeft">
+                            <span>Danh sách học phần - SV</span>
+                        </a>
+                    </li>
+                    <li class="flex item-2 submenu-item  hover-color" key="SettingRoom">
+                        <a href="#" class="tabLeft">
+                            <span>Thiết lập phòng thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="CreateExam">
+                        <a href="#" class="tabLeft">
+                            <span>Tạo lịch thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="ExamRegisterResult">
+                        <a href="#" class="tabLeft">
+                            <span>Kết quả đăng ký thi</span>
+                        </a>
+                    </li>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="fa fa-address-book"></i>
+                            <span>Quản lý danh mục</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item" key="StudentManager">
+                        <a href="#" class="tabLeft">
+                            <span>Sinh viên</span>
+                        </a>
+                    </li>
+                    <li class="flex item-2 submenu-item" key="SubjectManager">
+                        <a href="#" class="tabLeft">
+                            <span>Học phần</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="RoomManager">
+                        <a href="#" class="tabLeft">
+                            <span>Phòng thi</span>
+                        </a>
+                    </li>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="glyphicon glyphicon-cog"></i>
+                            <span>Tùy chọn</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item" id='menuChangePassword'>
+                        <a href="#" class="tabLeft">
+                            <span>Đổi mật khẩu</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-right flex1 main-content">
+
+                <!-- Nội dung thay thế từng trang -->
+                <div class="container-fluid" id="GridRoomSettingContainer">
+
+                    <div class="row breadrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Thiết lập phòng thi
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="row header-title header-title-combo">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
+                            id="chooseExam">
+                        </select>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="toolbar" id="ToolbarGridRoomSetting">
+                                <div class="toolbar-item" CommanName='Choose'>
+                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
+                                    <span class="text-toolbar">Chọn phòng thi</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Save'>
+                                    <span class="icon-toolbar glyphicon glyphicon-download-alt"></span>
+                                    <span class="text-toolbar">Cất</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Setting'>
+                                    <span class="icon-toolbar glyphicon glyphicon-edit"></span>
+                                    <span class="text-toolbar">Thiết lập số máy</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Delete'>
+                                    <span class="icon-toolbar glyphicon glyphicon-trash"></span>
+                                    <span class="text-toolbar">Xóa</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridRoomSetting" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="RoomName">Tên phòng</div>
+                                    <div class="column" setField="RoomCode">Mã phòng</div>
+                                    <div class="column" setField="Location">Khu vực</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                    <div class="column" setField="NumberOfComputer" dataType="Number" allowEdit="true">
+                                        Số máy
+                                        hiện
+                                        có</div>
+                                    <div class="column" setField="PreventiveComputer" dataType="Number"
+                                        allowEdit="true">Số
+                                        máy
+                                        dự phòng</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Form thêm mới Học phần -->
+    <div class="wrapper-form">
+        <div class="formDialog" id="formRoom">
+
+            <!-- Header form -->
+            <div class="header-form">
+                Chọn danh sách phòng thi
+            </div>
+
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="body-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 row-custom">
+                            <div class="Grid" id="GridRoom" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="RoomName">Tên phòng</div>
+                                <div class="column" setField="RoomCode">Mã phòng</div>
+                                <div class="column" setField="Location">Khu vực</div>
+                                <div class="column" setField="Description">Mô tả</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer form -->
+            <div class="footer-form" id="ToolbarChooseRoom">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save" CommanName='ChooseSave'>
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form đổi mật khẩu -->
+    <div class="wrapper-form">
+        <div class="formDialog" id="formChangePassword">
+            <!-- Header form -->
+            <div class="header-form">
+                ĐỔI MẬT KHẨU
+            </div>
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="Password" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Mật khẩu mới <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="PasswordNew" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu mới...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="PasswordConfirm" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo cất thành công -->
+    <div class="alert alert-success" id="success-alert">
+        <strong>Cất dữ liệu thành công! </strong>
+    </div>
+
+    <!-- Form xác nhận xóa -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="header-delete">XÁC NHẬN XÓA</h4>
+                    <h4 class="modal-title">Bạn có muốn xóa các bản ghi đã chọn?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">HỦY BỎ</button>
+                    <button type="button" id="btn-Delete" class="btn btn-danger">XÓA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form cảnh báo xóa -->
+    <div id="myModalWarning" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="header-delete">CẢNH BÁO</h4>
+                    <h4 class="modal-title">Bản ghi đã phát sinh dữ liệu liên quan nên không thể xóa!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">ĐỒNG Ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script library -->
+    <script src="../Script/Library/jquery.min.js"></script>
+    <script src="../Script/Library/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../Script/Library/jquery-ui.min.js"></script>
+
+    <!-- Script common -->
+    <script src="../Script/Common/MappingApi.js"></script>
+    <script src="../Script/Common/Common.js"></script>
+    <script src="../Script/Common/Master.js"></script>
+    <script src="../Script/Base/Grid.js"></script>
+    <script src="../Script/Base/BaseGrid.js"></script>
+    <script src="../Script/Base/BaseDetail.js"></script>
+    <script src="../Script/Base/BaseForm.js"></script>
+
+    <!-- Script từng page -->
+    <script src="../Script/Import/ImportForm.js"></script>
+    <script src="../Script/Form/ChooseRoomForm.js"></script>
+    <script src="../Script/Form/ChangePasswordForm.js"></script>
+    <script src="../Script/View/RoomSetting.js"></script>
+</body>
+
+</html>

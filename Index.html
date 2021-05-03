@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Script/Library/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Content/CSS/View/Index.css">
+    <title>Đăng nhập</title>
+</head>
+<body>
+    <div class="login_wrapper">
+        <div class="header">
+            <div class="logo" title="QLCB.VN">ĐẠI HỌC QUỐC GIA HÀ NỘI</div>
+        </div>
+        <div class="main-content row-image">
+            <div class="main-content-bound image">
+                <div class="login-form-container" id="loginFormContainer">
+                    <div class="slider-bg-container">
+                        <img class="background-image" src="Content/Images/slide-login.png" alt="">
+                    </div>
+                    <div class="login-form" style="width: 368px;">
+                        <div class="header-login">ĐĂNG NHẬP</div>
+                        <div class="control-field" id="wrapUserNameField">
+                            <span class="icon-user glyphicon glyphicon-user"></span>
+                            <input type="text" TypeError='0' FieldName="UserName" placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="control-field" id="wrapPassWordField">
+                            <span class="icon-lock glyphicon glyphicon-lock"></span>
+                            <input type="password" TypeError='1' FieldName="PassWord" placeholder="Mật khẩu">
+                        </div>
+                        <div class="message-error" style="display: none;">Tên đăng nhập hoặc mật khẩu không chính xác! <br> Mật khẩu không chính xác </div>
+                        <div class="btn-submit">ĐĂNG NHẬP</div>
+                        <div class="forgot-password">Quên mật khẩu?</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="copy-right">Vietnam National University, Hanoi</p>
+            <p class="company-info">Địa chỉ: 144 Xuân Thủy, Cầu Giấy, Hà Nội .Điện thoại: 024.37547.461; Email: media@vnu.edu.vn</p>
+        </div>
+    </div>
+    <script src="Script/Library/jquery.min.js"></script>
+    <script src="Script/Common/MappingApi.js"></script>
+    <script src="Script/Common/Common.js"></script>
+    <script src="Script/View/Index.js"></script>
+</body>
+</html>

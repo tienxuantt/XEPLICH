@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Danh sách học phần - Sinh viên</title>
+    <link rel="shortcut icon" href="../Content/Images/vnuLogo.png">
+    <link rel="stylesheet" href="../Script/Library/bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Content/CSS/Common/Common.css">
+</head>
+
+<body>
+    <div class="container-wrapp">
+        <!-- Header page -->
+        <div class="header-page">
+            <div class="header-left flex">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+                <span class="title-header">HỆ THỐNG ĐĂNG KÝ THI - ĐHQG HÀ NỘI</span>
+            </div>
+            <div class="header-right flex">
+                <div class="fullName-user">Nguyễn Văn Tùng</div>
+                <div class="avatar-user">
+                    <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <div class="logout">
+                    Đăng xuất
+                </div>
+            </div>
+        </div>
+        <div class="body-page flex">
+            <!-- Menu left -->
+            <div class="body-left">
+                <ul>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="fa fa-graduation-cap"></i>
+                            <span>Quản lý kì thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="SemesterManager">
+                        <a href="#" class="tabLeft">
+                            <span>Kì thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item hover-color" key="SubjectSemester">
+                        <a href="#" class="tabLeft">
+                            <span>Danh sách học phần - SV</span>
+                        </a>
+                    </li>
+                    <li class="flex item-2 submenu-item" key="SettingRoom">
+                        <a href="#" class="tabLeft">
+                            <span>Thiết lập phòng thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="CreateExam">
+                        <a href="#" class="tabLeft">
+                            <span>Tạo lịch thi</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="ExamRegisterResult">
+                        <a href="#" class="tabLeft">
+                            <span>Kết quả đăng ký thi</span>
+                        </a>
+                    </li>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="fa fa-address-book"></i>
+                            <span>Quản lý danh mục</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item" key="StudentManager">
+                        <a href="#" class="tabLeft">
+                            <span>Sinh viên</span>
+                        </a>
+                    </li>
+                    <li class="flex item-2 submenu-item" key="SubjectManager">
+                        <a href="#" class="tabLeft">
+                            <span>Học phần</span>
+                        </a>
+                    </li>
+                    <li class="flex item-3 submenu-item" key="RoomManager">
+                        <a href="#" class="tabLeft">
+                            <span>Phòng thi</span>
+                        </a>
+                    </li>
+                    <li class="menu-group">
+                        <a href="#" class="menu-parent">
+                            <i class="glyphicon glyphicon-cog"></i>
+                            <span>Tùy chọn</span>
+                        </a>
+                    </li>
+                    <li class="flex item-1 submenu-item" id='menuChangePassword'>
+                        <a href="#" class="tabLeft">
+                            <span>Đổi mật khẩu</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="body-right flex1 main-content">
+
+                <!-- Nội dung thay thế từng trang -->
+                <div class="container-fluid" id="SubjectContainer">
+
+                    <div class="row breadrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Quản lý kì thi</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Danh sách học phần - Sinh viên
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div class="row header-title header-title-combo" Layout="Master">
+                        <select class="speed combox-select" aria-placeholder="Chọn kì thi..." DataType="EnumCombobox"
+                            id="chooseExam">
+                        </select>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="row" Layout="Master">
+                        <div class="col-xl-12">
+                            <div class="toolbar" id="ToolbarGridListSubject">
+                                <div class="toolbar-item" CommanName='Choose'>
+                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
+                                    <span class="text-toolbar">Chọn học phần</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='ViewDetail'>
+                                    <span class="icon-toolbar glyphicon glyphicon-random"></span>
+                                    <span class="text-toolbar">Xem chi tiết</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Delete'>
+                                    <span class="icon-toolbar glyphicon glyphicon-trash"></span>
+                                    <span class="text-toolbar">Xóa</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper" Layout="Master">
+                        <div class="row" Layout="Master">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="GridListSubject" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="SubjectName">Tên học phần</div>
+                                    <div class="column" setField="SubjectCode">Mã học phần</div>
+                                    <div class="column" setField="NumberOfCredit" dataType="Number">Số tín chỉ</div>
+                                    <div class="column" setField="NumberStudent" dataType="Number">Số sinh viên</div>
+                                    <div class="column" setField="Description">Mô tả</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paging -->
+                    <div class="row" Layout="Master">
+                        <div class="col-xl-12">
+                            <div class="paging" id="paging-GridListSubject">
+                                <div class="paging-left float-left flex">
+                                    <div class="icon-paging icon-first" title="Trang đầu"></div>
+                                    <div class="icon-paging icon-pre" title="Trang trước"></div>
+                                    <div class="paging-text1">Trang</div>
+                                    <input type="text" class="page-number" value="1">
+                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>
+                                    <div class="icon-paging icon-next" title="Trang sau"></div>
+                                    <div class="icon-paging icon-last" title="Trang cuối"></div>
+                                    <div class="paging-text1">Số dòng</div>
+                                    <select class="page-Size">
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                                <div class="paging-right float-right flex">
+                                    <div class="content-paging-right">
+                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>
+                                        trên <span class="total-record">12</span> kết quả
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row header-title" Layout="Detail" style="display: none;">
+                        <span>DANH SÁCH SINH VIÊN - PHÁT TRIỂN ỨNG DỤNG WEB (INT3306)</span>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="row" Layout="Detail" style="display: none;">
+                        <div class="col-xl-12">
+                            <div class="toolbar" id="ToolbarStudentSubject">
+                                <div class="toolbar-item" CommanName='Back'>
+                                    <span class="icon-toolbar glyphicon glyphicon-share-alt"></span>
+                                    <span class="text-toolbar">Quay lại</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Import'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-upload"></span>
+                                    <span class="text-toolbar">Nhập khẩu</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Export'>
+                                    <span class="icon-toolbar glyphicon glyphicon-cloud-download"></span>
+                                    <span class="text-toolbar">Xuất khẩu</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Add'>
+                                    <span class="icon-toolbar glyphicon glyphicon-plus"></span>
+                                    <span class="text-toolbar">Thêm</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Delete'>
+                                    <span class="icon-toolbar glyphicon glyphicon-trash"></span>
+                                    <span class="text-toolbar">Xóa</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Accept'>
+                                    <span class="icon-toolbar glyphicon glyphicon-ok"></span>
+                                    <span class="text-toolbar">Cho phép thi</span>
+                                </div>
+                                <div class="toolbar-item" CommanName='Reject'>
+                                    <span class="icon-toolbar glyphicon glyphicon-remove"></span>
+                                    <span class="text-toolbar">Cấm thi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid  -->
+                    <div class="grid-wrapper" Layout="Detail" style="display: none;">
+                        <div class="row" Layout="Detail" style="display: none;">
+                            <div class="col-xl-12">
+                                <div class="Grid" id="StudentSubject" useCheckBox='true' useIndex="true">
+                                    <div class="column" setField="StudentName">Họ và tên</div>
+                                    <div class="column" setField="StudentCode">Mã sinh viên</div>
+                                    <div class="column" setField="Email">Địa chỉ email</div>
+                                    <div class="column" setField="Gender" dataType="Enum" enumName="Gender">Giới tính
+                                    </div>
+                                    <div class="column" setField="DateOfBirth" dataType="Date">Ngày sinh</div>
+                                    <div class="column" setField="Course">Khóa học</div>
+                                    <div class="column" setField="Status" dataType="Enum" enumName="StatusStudent">Đủ
+                                        điều kiện thi</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paging -->
+                    <div class="row" Layout="Detail" style="display: none;">
+                        <div class="col-xl-12">
+                            <div class="paging" id="paging-StudentSubject">
+                                <div class="paging-left float-left flex">
+                                    <div class="icon-paging icon-first" title="Trang đầu"></div>
+                                    <div class="icon-paging icon-pre" title="Trang trước"></div>
+                                    <div class="paging-text1">Trang</div>
+                                    <input type="text" class="page-number" value="1">
+                                    <div class="paging-text1">Trên <span class="totalPage">2</span></div>
+                                    <div class="icon-paging icon-next" title="Trang sau"></div>
+                                    <div class="icon-paging icon-last" title="Trang cuối"></div>
+                                    <div class="paging-text1">Số dòng</div>
+                                    <select class="page-Size">
+                                        <option value="15">15</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                                <div class="paging-right float-right flex">
+                                    <div class="content-paging-right">
+                                        Hiển thị <span class="startIndex">1</span> - <span class="end-Index">10</span>
+                                        trên <span class="total-record">12</span> kết quả
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Form thêm mới sinh viên -->
+    <div class="wrapper-form">
+        <div class="formDialog" id="formStudentSubject">
+
+            <!-- Header form -->
+            <div class="header-form">
+                Thêm sinh viên
+            </div>
+
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mã sinh viên <span class="require">(*)</span></b>
+                                <input type="text" Require="true" SetField="StudentCode" MaxLength="10"
+                                    title="Không được để trống" placeholder="Nhập mã sinh viên...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form nhập khẩu -->
+    <div class="wrapper-form">
+        <div class="formDialog form-import" id="formImportStudent">
+
+            <!-- Header form -->
+            <div class="header-form">
+                NHẬP KHẨU DANH SÁCH SINH VIÊN
+            </div>
+
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <input type="file" name="fileImport" id="upload-file" accept=".xlsx, .xls, .csv" />
+                    <div class="col-md-12 flex">
+                        <div class="import-file">
+                            <div class="glyphicon glyphicon-cloud-upload"></div>
+                            <p class="text-import">Chọn file</p>
+                        </div>
+                        <div class="download-file">
+                            <div class="glyphicon glyphicon-cloud-download"></div>
+                            <p class="text-import">Tải file mẫu</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="file-name"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save disable-button">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>NHẬP KHẨU</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form thêm mới Học phần -->
+    <div class="wrapper-form">
+        <div class="formDialog" id="formSubject">
+
+            <!-- Header form -->
+            <div class="header-form">
+                Chọn danh sách học phần
+            </div>
+
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="body-wrapper">
+                    <div class="row">
+                        <div class="col-md-12 row-custom">
+                            <div class="Grid" id="GridSubject" useCheckBox='true' useIndex="true">
+                                <div class="column" setField="SubjectName">Tên học phần</div>
+                                <div class="column" setField="SubjectCode">Mã học phần</div>
+                                <div class="column" setField="NumberCredit" dataType="Number">Số tín chỉ</div>
+                                <div class="column" setField="Description">Mô tả</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer form -->
+            <div class="footer-form" id="ToolbarChooseSubject">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save" CommanName='ChooseSave'>
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form đổi mật khẩu -->
+    <div class="wrapper-form">
+        <div class="formDialog" id="formChangePassword">
+            <!-- Header form -->
+            <div class="header-form">
+                ĐỔI MẬT KHẨU
+            </div>
+            <!-- Body form -->
+            <div class="body-form">
+                <div class="row">
+                    <div class="col-md-12 row-custom">
+                        <div class="row-grid">
+                            <div class="text-field flex1">
+                                <b>Mật khẩu hiện tại <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="Password" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu hiện tại...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Mật khẩu mới <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="PasswordNew" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu mới...">
+                            </div>
+                        </div>
+                        <div class="row-grid">
+                            <div class="text-field flex1 border-top-none">
+                                <b>Xác nhận mật khẩu <span class="require">(*)</span></b>
+                                <input type="password" Require="true" SetField="PasswordConfirm" MaxLength="100"
+                                    title="Không được để trống" placeholder="Nhập mật khẩu xác nhận...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer form -->
+            <div class="footer-form">
+                <div class="btn-cancel">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span>HỦY BỎ</span>
+                </div>
+                <div class="btn-save">
+                    <span class="glyphicon glyphicon-save"></span>
+                    <span>CẤT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thông báo cất thành công -->
+    <div class="alert alert-success" id="success-alert">
+        <strong>Cất dữ liệu thành công! </strong>
+    </div>
+
+    <!-- Form xác nhận xóa -->
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="header-delete">XÁC NHẬN XÓA</h4>
+                    <h4 class="modal-title">Bạn có muốn xóa các bản ghi đã chọn?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">HỦY BỎ</button>
+                    <button type="button" id="btn-Delete" class="btn btn-danger">XÓA</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form cảnh báo xóa -->
+    <div id="myModalWarning" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="header-delete">CẢNH BÁO</h4>
+                    <h4 class="modal-title">Bản ghi đã phát sinh dữ liệu liên quan nên không thể xóa!</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">ĐỒNG Ý</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script library -->
+    <script src="../Script/Library/jquery.min.js"></script>
+    <script src="../Script/Library/bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../Script/Library/jquery-ui.min.js"></script>
+
+    <!-- Script common -->
+    <script src="../Script/Common/MappingApi.js"></script>
+    <script src="../Script/Common/Common.js"></script>
+    <script src="../Script/Common/Master.js"></script>
+    <script src="../Script/Base/Grid.js"></script>
+    <script src="../Script/Base/BaseGrid.js"></script>
+    <script src="../Script/Base/BaseDetail.js"></script>
+    <script src="../Script/Base/BaseForm.js"></script>
+
+    <!-- Script từng page -->
+    <script src="../Script/Import/ImportForm.js"></script>
+    <script src="../Script/Form/ChooseSubjectForm.js"></script>
+    <script src="../Script/Form/ChangePasswordForm.js"></script>
+    <script src="../Script/Form/StudentSubjectForm.js"></script>
+    <script src="../Script/View/StudentSubject.js"></script>
+    <script src="../Script/View/SubjectSemester.js"></script>
+</body>
+
+</html>
